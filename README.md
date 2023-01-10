@@ -6,6 +6,14 @@ Sharemeup is a photo sharing social media web app. You can have a look [here](ht
 
 ## Screenshot
 
+| Frontend |
+|----------|
+| ![image](https://user-images.githubusercontent.com/91855362/211669145-a5b7dc07-adf8-4afe-8360-a05ded2b727d.png) |
+
+| Backend |
+|---------|
+| ![image](https://user-images.githubusercontent.com/91855362/211669704-b00dd738-ac12-4896-b31e-348112ca5a87.png) |
+
 ## Setup
 
 1. Clone, fork or download the project
