@@ -22,10 +22,6 @@ export const Home = () => {
 
 
     useEffect(() => {
-        if (!userInfo) {
-            return navigate('/login')
-        }
-        
         const query = userQuery(userInfo?.googleId)
 
         client.fetch(query)
