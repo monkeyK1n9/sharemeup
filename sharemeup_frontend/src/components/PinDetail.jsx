@@ -23,6 +23,7 @@ export const PinDetail = ({user}) => {
             client.fetch(query)
             .then((data) => {
                 setPinDetail(data[0])
+                // console.log(pinDetail)
 
                 if(data[0]) {
                     query = pinDetailMorePinQuery(data[0])
@@ -33,6 +34,7 @@ export const PinDetail = ({user}) => {
                     })
                 }
             })
+            
         }
     }
 
@@ -42,7 +44,7 @@ export const PinDetail = ({user}) => {
 
             client
             .patch(pinId)
-            .setIfMissing({ comment: [] })
+            .setIfMissing({ comments: [] })
             .insert('after', 'comments[-1]', [{
                 comment,
                 _key: uuidv4(),
@@ -57,16 +59,19 @@ export const PinDetail = ({user}) => {
                 setAddingComment(false)
                 fetchPinDetails()
             })
+
         }
     }
 
     useEffect(() => {
-        fetchPinDetails()
+            // console.log(pinDetail)
+            fetchPinDetails()
     }, [pinId])
 
     if (!pinDetail) return <Spinner message="Loading pin..."/>
 
     return (
+        <>
         <div className='flex xl-flex-row flex-col m-auto bg-white' style={{maxWidth: '1500px', borderRadius: '32px'}}>
             <div className='flex justify-center items-center md:items-start flex-initial'>
                 <img 
@@ -156,5 +161,16 @@ export const PinDetail = ({user}) => {
                 </div>
             </div>
         </div>
+        {pins?.length > 0 ? (
+            <>
+                <h2 className='text-center font-bold text-2xl mt-8 mb-4'>
+                    More like this
+                </h2>
+                <MasonryLayout pins={pins} />
+            </>
+        ):(
+            <Spinner message="Loading more pins..." />
+        )}
+        </>
     )
 }

@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {HiMenu} from 'react-icons/hi'
 import {AiFillCloseCircle} from 'react-icons/ai';
-import {Link, Route, Routes} from 'react-router-dom'
+import {Link, Route, Routes, useNavigate} from 'react-router-dom'
 
 import { Sidebar, UserProfile } from '../components';
 import { Pins } from './Pins';
@@ -16,10 +16,16 @@ export const Home = () => {
     const [user, setUser] = useState({})
 
     const scrollRef = useRef(null)
+    const navigate = useNavigate()
 
     const userInfo = fetchUser()
 
+
     useEffect(() => {
+        if (!userInfo) {
+            return navigate('/login')
+        }
+        
         const query = userQuery(userInfo?.googleId)
 
         client.fetch(query)
@@ -33,6 +39,8 @@ export const Home = () => {
     useEffect(() => {
         scrollRef.current.scrollTo(0, 0)
     }, [])
+
+
     return (
         <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
             <div className="hidden md:flex h-screen flex-initial">

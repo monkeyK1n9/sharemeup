@@ -33,7 +33,7 @@ export const Feed = () => {
 
         client.fetch(feedQuery)
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             setSearchResults(data)
             setLoading(false)
         })
@@ -45,6 +45,7 @@ export const Feed = () => {
 
     if (loading) return <Spinner message={`We are adding new ${'ideas'} to your feed...`} />
 
+    if(!searchResults?.length) return <h2>No pins available</h2>
     return (
         <div>
             {searchResults && <MasonryLayout pins={searchResults} />}

@@ -71,7 +71,7 @@ export const Pin = ({pin: {postedBy, image, _id, destination, save}}) => {
                                     <MdDownloadForOffline />
                                 </a>
                             </div>
-                            {alreadySaved?.length !== 0 ? (
+                            {alreadySaved ? (
                                 <button
                                     type='button'
                                     className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outlined-none'
@@ -100,7 +100,7 @@ export const Pin = ({pin: {postedBy, image, _id, destination, save}}) => {
                                     className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:100 hover:shadow-md"
                                 >
                                     <BsFillArrowUpRightCircleFill />
-                                    {destination.length > 20 ?destination.slice(8, 20): destination.slice(8)}
+                                    {destination.length > 15 ?destination.slice(0, 15): destination}
                                 </a>
                             )}
                             {postedBy?._id === userInfo.googleId && (
